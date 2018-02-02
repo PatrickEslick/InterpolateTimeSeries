@@ -42,17 +42,17 @@ intDataVector <- function(lookup, datetimes, data, maxDiff=4) {
 }
 
 #Interpolate values for a sample data file from a continuous data file
-msc <- function(sample_data_file, sample_dateformat, sample_date_heading = "datetime",
-                continuous_data_file, continuous_dateformat, continuous_date_heading = "datetime",
+msc <- function(sample_data, sample_dateformat, sample_date_heading = "datetime",
+                cont_data, continuous_dateformat, continuous_date_heading = "datetime",
                 maxDiff = 4) {
   
   #Read sample data and convert date column
-  sample_data <- read.csv(sample_data_file)
+  # sample_data <- sample_data_file
   sample_data[,sample_date_heading] <- 
     as.POSIXct(sample_data[,sample_date_heading], format=sample_dateformat)
   
   #Read continuous data and convert date column
-  cont_data <- read.csv(continuous_data_file)
+  # cont_data <- cont_data_file
   cont_data[,continuous_date_heading] <-
     as.POSIXct(cont_data[,continuous_date_heading], format=continuous_dateformat)
   
