@@ -11,7 +11,7 @@ library(shiny)
 source("tools.R")
 options(shiny.maxRequestSize=30*1024^2)
 
-# Define server logic required to draw a histogram
+# Define server logic
 shinyServer(function(input, output) {
   
   #Read the sample data
