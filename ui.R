@@ -13,7 +13,7 @@ library(shiny)
 shinyUI(fluidPage(
   
   # Application title
-  titlePanel("Interpolate continuous measurements"),
+  includeMarkdown("help.Rmd"),
   
   fluidRow(
     #Options for specifying the sample data
