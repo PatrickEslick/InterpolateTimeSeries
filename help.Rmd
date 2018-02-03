@@ -20,3 +20,5 @@ The USGS R package [dataRetrieval](http://usgs-r.github.io/dataRetrieval/) makes
 4. Repeat steps 1 - 3 for the continuous file
 5. Adjust the maximum difference slider to the desired level. This is the maximum time span between two continuous data points for which a value will be interpolated. If the difference is greater than that for a sample, "NA" will be returned.
 6. Click "Interpolate". A file will be downloaded in your browser. This could take a minute.
+
+### 3 Have at it:
