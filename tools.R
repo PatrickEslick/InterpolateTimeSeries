@@ -61,7 +61,7 @@ msc <- function(sample_data, sample_dateformat, sample_date_heading = "datetime"
   s_datetimes <- sample_data[,sample_date_heading]
   cont_vars <- names(cont_data)[names(cont_data) != continuous_date_heading]
   classes <- sapply(cont_vars, function(x) {class(cont_data[,x])})
-  cont_vars <- cont_vars[classes=="numeric"]
+  cont_vars <- cont_vars[classes %in% c("numeric", "integer")]
   for(i in cont_vars) {
     
     sample_data[,i] <-
