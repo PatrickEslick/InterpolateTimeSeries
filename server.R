@@ -54,7 +54,6 @@ shinyServer(function(input, output) {
     content = function(file) {
       print(input$s_dateformat)
       print(input$c_dateformat)
-      # withProgress({
       showNotification("Working...", id="wrk", duration=NULL)
         merged <- try(msc(sample_data = sample_data(), 
             sample_dateformat = input$s_dateformat,
@@ -63,7 +62,6 @@ shinyServer(function(input, output) {
             continuous_dateformat = input$c_dateformat,
             continuous_date_heading = input$cont_heading,
             maxDiff = input$maxDiff), silent=TRUE)
-      # }, value=1, message = "Working...")
       removeNotification(id="wrk")
       if(class(merged) != "try-error") {
         write.csv(merged, file=file, row.names=FALSE)
