@@ -8,6 +8,9 @@
 #       if the two points bracketing t are more than maxDiff away from each other, NA will be returned
 intData <- function(t, datetimes, data, maxDiff=4) {
   timeDiff <- difftime(t, datetimes)
+  if(all(timeDiff < 0) || all(timeDiff > 0))
+    return(NA)
+
   if(any(timeDiff==0)) {
     out <- data[timeDiff==0]
   } else {
@@ -57,17 +60,19 @@ msc <- function(sample_data, sample_dateformat, sample_date_heading = "datetime"
     as.POSIXct(cont_data[,continuous_date_heading], format=continuous_dateformat)
   
   #Iterate through each non-date, numeric column in the continuous data and add it to the sample frame
-  c_datetimes <- cont_data[,continuous_date_heading]
   s_datetimes <- sample_data[,sample_date_heading]
   cont_vars <- names(cont_data)[names(cont_data) != continuous_date_heading]
   classes <- sapply(cont_vars, function(x) {class(cont_data[,x])})
   cont_vars <- cont_vars[classes %in% c("numeric", "integer")]
   for(i in cont_vars) {
     
+    c_data <- cont_data[,c(continuous_date_heading, i)]
+    c_data <- na.omit(c_data)
+    
     sample_data[,i] <-
       intDataVector(lookup=s_datetimes,
-                    datetimes=c_datetimes,
-                    data = cont_data[,i],
+                    datetimes=c_data[,continuous_date_heading],
+                    data = c_data[,i],
                     maxDiff = maxDiff)
     
   }
